@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
+import Sidebar from "./sidebar";
 
 function Login() {
 
@@ -16,13 +17,14 @@ function Login() {
     <>
       <Box
         sx={{
-          backgroundColor: "bg-blue",
-          height: "50vh",
+          height: "100vh",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          color: "white",
           textAlign: "center",
+          background : "black",
+          color : "white",
+          width : "w-11/12"
         }}
       >
         <Box>

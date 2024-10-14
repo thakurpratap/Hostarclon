@@ -3,6 +3,7 @@ import PhoneInput from "react-phone-number-input";
 import 'react-phone-number-input/style.css'
 import signin from '../image/signin.jpg'
 import { useNavigate } from "react-router-dom";
+import Sidebar from "./sidebar";
 
 
 function Signin() {
@@ -27,7 +28,7 @@ function Signin() {
   const handleVerifyOtp = () => {
     if (otp === '1234') {
       alert("OTP verified successfully!");
-      navigate("/welcome")
+      navigate("/")
       // Here you can add further actions, like redirecting to another page
     } else {
       alert("Invalid OTP. Please try again.");
@@ -36,7 +37,8 @@ function Signin() {
 
   return (
     <>
-      <div className="grid grid-cols-2 bg-black" >
+    {/* <Sidebar/> */}
+      <div className="grid grid-cols-2 bg-black " style={{height : "100vh"}} >
         <div style={{ backgroundImage: `linear-gradient(to left,rgba(0,0,0,7),rgba(0,0,0,0.1)),url(${signin})` }}>      
         </div>      
         <div> 
