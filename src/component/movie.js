@@ -1,5 +1,5 @@
 import React from "react";
-import { useOutletContext } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 function Movie(){
     const [movies] = useOutletContext(); // Access movies from Outlet context
@@ -19,13 +19,14 @@ return(
       </div>
       <div className="grid grid-cols-6 pt-14 bg-black">
         {movies.map((data) => (
+            <Link to = "/moviedetails" state={{data}}>
           <div key={data.id} className="rounded overflow-hidden shadow-lg mt-4 ml-4">
             <img
               className="w-full h-80"
               src={`https://image.tmdb.org/t/p/w500${data.backdrop_path}`}
               alt="Movie Backdrop"
             />
-          </div>
+          </div></Link>
         ))}
       </div>
       </>

@@ -1,4 +1,5 @@
 import React,{useState, useEffect} from "react";
+import { Link } from "react-router-dom";
 
 function Tv (){
     const [movies, setMovies] = useState([])
@@ -36,9 +37,10 @@ function Tv (){
         <div className="grid grid-cols-6 bg-black">
         {movies.map((data)=>{
             return  <>
+            <Link to = "/moviedetails" state={{data}}>
             <div key={data.id} className=" rounded overflow-hidden shadow-lg mt-4 ml-4">
           <img className="w-full" src={`https://image.tmdb.org/t/p/w500${data.poster_path}`} alt="Sunset in the mountains"/>
-        </div>
+        </div></Link>
         </>
           })}
         </div>

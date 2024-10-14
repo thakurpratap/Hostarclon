@@ -14,16 +14,6 @@ function App() {
   return (
     <div>
          <BrowserRouter>
-        {/* <Main /> */}
-        {/* <Routes>
-        <Route path="/" exact element={<Main />}/>
-        <Route path="/login" exact element={<Login/>}/>
-          <Route path="/signin" exact element={<Signin />} />
-          <Route path="/welcome" exact element={<Welcome />} />
-          <Route path="/search" exact element={<Search />} />
-          <Route path="/movie" exact element={<Movie />} />
-          {/* </Route> */}
-        {/* </Routes> */} 
         <Routes>
         <Route path="/"  element={<Main />}>
           <Route index element={<Navigate to="welcome" replace />} />
