@@ -1,151 +1,9 @@
-// import * as React from "react";
-// import PropTypes from "prop-types";
-// import Box from "@mui/material/Box";
-// import Typography from "@mui/material/Typography";
-// import { createTheme } from "@mui/material/styles";
-// import Profile from "@mui/icons-material/AccountCircle";
-// import Search from "@mui/icons-material/Search";
-// import Home from "@mui/icons-material/Home";
-// import Movies from "@mui/icons-material/Movie";
-// import { AppProvider } from "@toolpad/core/AppProvider";
-// import { DashboardLayout } from "@toolpad/core/DashboardLayout";
-// import { Link } from "react-router-dom";
-// // import { useLocation, useNavigate } from 'react-router-dom';
-
-// const NAVIGATION = [
-//   {
-//     segment: "dashboard",
-//     title: "My Space",
-//     path: "/signin",
-//     icon: <Profile />,
-//     Component: { Link },
-//     to: "/signin",
-//   },
-//   {
-//     segment: "search",
-//     title: "Search",
-//     path: "/search",
-//     icon: <Search />,
-//   },
-//   {
-//     segment: "home",
-//     title: "Home",
-//     path: "/welcome",
-//     icon: <Home />,
-//   },
-//   {
-//     segment: "movies",
-//     path: "/movie",
-//     title: "Movies",
-//     icon: <Movies />,
-//   },
-// ];
-// const demoTheme = createTheme({
-//   cssVariables: {
-//     colorSchemeSelector: "data-toolpad-color-scheme",
-//   },
-//   colorSchemes: { light: true, dark: true },
-//   breakpoints: {
-//     values: {
-//       xs: 0,
-//       sm: 600,
-//       md: 600,
-//       lg: 1200,
-//       xl: 1536,
-//     },
-//   },
-// });
-
-// function DemoPageContent({ pathname }) {
-//   return (
-//     <Box
-//       sx={{
-//         py: 4,
-//         display: "flex",
-//         flexDirection: "column",
-//         alignItems: "center",
-//         textAlign: "center",
-//       }}
-//     >
-//       <Typography>Dashboard content for {pathname}</Typography>
-//     </Box>
-//   );
-// }
-
-// DemoPageContent.propTypes = {
-//   pathname: PropTypes.string.isRequired,
-// };
-
-// function DashboardLayoutBasic(props) {
-//   const { window } = props;
-
-//   const [pathname, setPathname] = React.useState("/dashboard");
-
-//   const router = React.useMemo(() => {
-//     return {
-//       pathname,
-//       searchParams: new URLSearchParams(),
-//       navigate: (path) => setPathname(String(path)),
-//     };
-//   }, [pathname]);
-
-//   // Remove this const when copying and pasting into your project.
-//   const demoWindow = window !== undefined ? window() : undefined;
-
-//   return (
-//     <AppProvider
-//       navigation={NAVIGATION}
-//       router={router}
-//       theme={demoTheme}
-//       window={demoWindow}
-//     >
-//       <DashboardLayout>
-//         <DemoPageContent pathname={pathname} />
-//       </DashboardLayout>
-//     </AppProvider>
-//   );
-// }
-
-// DashboardLayoutBasic.propTypes = {
-//   /**
-//    * Injected by the documentation to work in an iframe.
-//    * Remove this when copying and pasting into your project.
-//    */
-//   window: PropTypes.func,
-// };
-
-// export default DashboardLayoutBasic;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import * as React from "react";
 import PropTypes from "prop-types";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
-// import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import { createTheme } from "@mui/material/styles";
@@ -160,10 +18,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
 import Welcome from "./welcome";
-// import { Link } from "@mui/material";
-import { Link } from "react-router-dom";
 import Movie from "./movie";
-// import { patch } from "@mui/material";
 
 // Navigation items for the sidebar and navbar
 const NAVIGATION = [
@@ -288,12 +143,6 @@ function DemoPageContent({ pathname, onLoginClick }) {
         <Movie/>;
        </Box>
       )
-    // default:
-    //   return (
-    //     <Box>
-    //       <Typography>404: Page Not Found</Typography>
-    //     </Box>
-    //   );
   }
 }
 

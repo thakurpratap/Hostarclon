@@ -1,34 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { useNavigate } from "react-router-dom";
-import Sidebar from "./sidebar";
+import loginin from "../image/login_in.png"
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
+import Signin from "./signin";
 
 function Login() {
 
-    const navigate = useNavigate();
+  const [openSigninModal, setOpenSigninModal] = useState(false);
 
-    const handleLoginClick = () => {
-        navigate("/signin"); // Navigate to the /signin route
-      };
+  const handleLoginClick = () => {
+    setOpenSigninModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenSigninModal(false);  
+  };
 
   return (
     <>
+<Box sx={{padding:"14px 16px"}}>
+  <Button  sx={{background : "#FFFFFF14" ,color: "#FFFFFF", marginLeft:"80%", marginTop: "3%"}}><HelpOutlineIcon/>
+   <a href="https://help.hotstar.com/in/en/support/home" target="_blank" rel="noopener noreferrer" className="ml-3">
+   Help & Support
+              </a>.
+   </Button>
+</Box> 
+    <Box >
+   <img src={loginin} alt="" style={{height : "10%", width: "20%", marginTop:"10%", marginLeft : "40%"}} />
       <Box
         sx={{
           height: "100vh",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
           textAlign: "center",
           background : "black",
+          marginTop : "3%",
           color : "white",
           width : "w-11/12"
         }}
       >
         <Box>
-          <Typography variant="h4" gutterBottom>
+          <Typography variant="h5" gutterBottom>
             Login to Disney+ Hotstar
           </Typography>
           <Typography variant="body1" gutterBottom>
@@ -53,7 +65,11 @@ function Login() {
           >
             Login
           </Button>
+          {openSigninModal && (
+            <Signin open={openSigninModal} handleClose={handleCloseModal} />
+          )}
         </Box>
+      </Box>
       </Box>
     </>
   );
