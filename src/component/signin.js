@@ -24,15 +24,15 @@ const style = {
 };
 
 function Signin({ open, handleClose }) {
-  const [value, setValue] = useState("");
-  const [otp, setOtp] = useState(""); 
-  const [isOtpSent, setIsOtpSent] = useState(false); 
+  // const [value, setValue] = useState("");
+  const [otp, setOtp] = useState("");
+  const [isOtpSent, setIsOtpSent] = useState(false);
   const navigate = useNavigate();
 
-  const handleSendOtp = () => {
-    if (value) {
-      alert(`OTP sent to ${value}. Use 1234 to verify.`);
-      setIsOtpSent(true); 
+  const handleSendOtp = (data) => {
+    if (data.phonenumber) {
+      alert(`OTP sent to ${data.phonenumber}. Use 1234 to verify.`);
+      setIsOtpSent(true);
     } else {
       alert("Please enter a valid phone number.");
     }
@@ -4436,8 +4436,8 @@ function Signin({ open, handleClose }) {
             <Box sx={{ flex: 1, p: 2, marginLeft: "10%" }}>
               <div class="flex items-center w-80">
                 <button
-                 
-                   className="pt-5 pb-4 flex-shrink-0 z-10 inline-flex mr-2 items-center py-2.5 px-4 text-sm font-medium text-center text-white border border-light-gray rounded-lg focus:outline-none" type="button"
+                  className="pt-5 pb-4 flex-shrink-0 z-10 inline-flex mr-2 items-center py-2.5 px-4 text-sm font-medium text-center text-white border border-light-gray rounded-lg focus:outline-none"
+                  type="button"
                 >
                   +91{" "}
                 </button>
@@ -4445,35 +4445,58 @@ function Signin({ open, handleClose }) {
                   id="outlined-search"
                   label="Enter mobile number"
                   type="text"
-                  value={value}
-                  onChange={(e) => setValue(e.target.value)}
+                  // value={value}
+                  // onChange={(e) => setValue(e.target.value)}
+                  {...register("phonenumber", {
+                    required: "Phonenumber is required",
+                    pattern: {
+                      value: /^(0|[6-9]\d*)(\.\d+)?$/,
+                      message:
+                        "Phone number must be starting with 6, 7, 8, or 9",
+                    },
+                    validate: {
+                      minLength: (value) =>
+                        value.length >= 10 || "Phone number must be 10 digits",
+                      maxLength: (value) =>
+                        value.length <= 10 ||
+                        "Phone number cannot exceed more than 10 digits",
+                    },
+                    // minLength: {
+                    //   value: 10,
+                    //   message: "Phone number must be 10 digits",
+                    // },
+                    // maxLength: {
+                    //   value: 10,
+                    //   message: "Phone number cannot exceed more than 10 digits",
+                    // },
+                  })}
                   className="w-60"
-
                   sx={{
-    // Styles applied to the TextField
-    '& .MuiOutlinedInput-root': {
-      '& fieldset': {
-        borderColor: 'lightgray',
-      },
-      '&:hover fieldset': {
-        borderColor: 'lightgray', 
-      },
-      '&.Mui-focused fieldset': {
-        borderColor: 'lightgray', 
-      },
-    },
-    '& .MuiInputLabel-root': {
-      color: 'white', 
-    },
-    '& .MuiInputLabel-root.Mui-focused': {
-      color: 'white', 
-    },
-    '& .MuiInputBase-input': {
-      color: 'white', 
-    },
-  }}
+                    // Styles applied to the TextField
+                    "& .MuiOutlinedInput-root": {
+                      "& fieldset": {
+                        borderColor: "lightgray",
+                      },
+                      "&:hover fieldset": {
+                        borderColor: "lightgray",
+                      },
+                      "&.Mui-focused fieldset": {
+                        borderColor: "lightgray",
+                      },
+                    },
+                    "& .MuiInputLabel-root": {
+                      color: "white",
+                    },
+                    "& .MuiInputLabel-root.Mui-focused": {
+                      color: "white",
+                    },
+                    "& .MuiInputBase-input": {
+                      color: "white",
+                    },
+                  }}
                 />
               </div>
+              <p style={{ color: "red" }}>{errors.phonenumber?.message}</p>
               <Typography
                 sx={{
                   mt: 2,
@@ -4501,7 +4524,8 @@ function Signin({ open, handleClose }) {
                 color="primary"
                 sx={{ width: "80%", mb: 2 }}
                 // sx={{ width: '100%' }}
-                onClick={handleSendOtp}
+                // onClick={handleSendOtp}
+                onClick={handleSubmit(handleSendOtp)}
               >
                 Get OTP
               </Button>
@@ -4527,8 +4551,20 @@ function Signin({ open, handleClose }) {
                   <input
                     type="text"
                     value={otp}
-                    onChange={(e) => setOtp(e.target.value)}
-                    style={{ width: "100%", padding: "8px", marginTop: "8px", color:"black"}}
+                    // onChange={(e) => setOtp(e.target.value)}
+                    onChange={(e) => {
+                      const value = e.target.value;
+                      // this is allow only 4digits and cont accept alphabets
+                      if (value.length <= 4 && /^[0-9]*$/.test(value)) {
+                        setOtp(value);
+                      }
+                    }}
+                    style={{
+                      width: "100%",
+                      padding: "8px",
+                      marginTop: "8px",
+                      color: "black",
+                    }}
                     placeholder="Enter OTP"
                   />
                   <Button
@@ -4541,8 +4577,6 @@ function Signin({ open, handleClose }) {
                   </Button>
                 </Box>
               )}
-
-
             </Box>
           </Box>
         </Box>
